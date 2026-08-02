@@ -3,6 +3,12 @@ import type { Session } from '@guitar-course/shared'
 
 const { data: sessions } = await useFetch<Session[]>('/api/sessions')
 const progressStore = useProgressStore()
+
+function sessionProgress(session: Session) {
+  const allItems = session.sections.flatMap((s) => s.items)
+  const watched = allItems.filter((item) => progressStore.videoProgress[item.itemId]?.watched).length
+  return { watched, total: allItems.length }
+}
 </script>
 
 <template>
@@ -13,6 +19,7 @@ const progressStore = useProgressStore()
     <div class="flex gap-2 mb-6">
       <UButton to="/search" icon="i-lucide-search" variant="soft">Pesquisar</UButton>
       <UButton to="/bonus" icon="i-lucide-music" variant="soft">Material Bônus</UButton>
+      <UButton to="/favorites" icon="i-lucide-heart" variant="soft">Favoritos</UButton>
     </div>
 
     <div v-if="progressStore.recentlyWatched.length > 0" class="mb-8">
@@ -41,10 +48,19 @@ const progressStore = useProgressStore()
             <div class="flex items-center justify-center size-10 rounded-full bg-primary/10 text-primary font-bold shrink-0">
               {{ session.sessionNum }}
             </div>
-            <div>
+            <div class="flex-1">
               <h2 class="font-semibold">{{ session.title }}</h2>
               <p class="text-sm text-(--ui-text-muted)">
                 {{ session.sections.length }} seções
+              </p>
+              <UProgress
+                :model-value="sessionProgress(session).watched"
+                :max="sessionProgress(session).total"
+                size="sm"
+                class="mt-2"
+              />
+              <p class="text-xs text-(--ui-text-muted) mt-1">
+                {{ sessionProgress(session).watched }}/{{ sessionProgress(session).total }} vídeos assistidos
               </p>
             </div>
           </div>
