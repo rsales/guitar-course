@@ -7,6 +7,12 @@ const { data: bonusItems } = await useFetch<BonusItem[]>('/api/bonus')
 
 <template>
   <div class="max-w-2xl mx-auto p-8">
+		<ULink 
+			to="/"
+		>
+			<UIcon name="i-lucide-arrow-left" />
+			Todas as sessões
+		</ULink>
     <h1 class="text-2xl font-bold mb-1">Material Bônus</h1>
     <p class="text-(--ui-text-muted) mb-6">{{ bonusItems?.length }} faixas de áudio</p>
 
