@@ -6,6 +6,11 @@ const { data: sessions } = await useFetch<Session[]>('/api/sessions')
 
 <template>
   <div class="max-w-4xl mx-auto p-8">
+		<div class="flex gap-2 mb-8">
+			<UButton to="/search" icon="i-lucide-search" variant="soft">Pesquisar</UButton>
+			<UButton to="/bonus" icon="i-lucide-music" variant="soft">Material Bônus</UButton>
+		</div>
+
     <h1 class="text-3xl font-bold mb-2">Como Tocar Guitarra Passo a Passo</h1>
     <p class="text-(--ui-text-muted) mb-8">10 sessões · 383 vídeos</p>
 
