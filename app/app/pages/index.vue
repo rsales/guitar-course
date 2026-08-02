@@ -2,17 +2,33 @@
 import type { Session } from '@guitar-course/shared'
 
 const { data: sessions } = await useFetch<Session[]>('/api/sessions')
+const progressStore = useProgressStore()
 </script>
 
 <template>
   <div class="max-w-4xl mx-auto p-8">
-		<div class="flex gap-2 mb-8">
-			<UButton to="/search" icon="i-lucide-search" variant="soft">Pesquisar</UButton>
-			<UButton to="/bonus" icon="i-lucide-music" variant="soft">Material Bônus</UButton>
-		</div>
-
     <h1 class="text-3xl font-bold mb-2">Como Tocar Guitarra Passo a Passo</h1>
-    <p class="text-(--ui-text-muted) mb-8">10 sessões · 383 vídeos</p>
+    <p class="text-(--ui-text-muted) mb-4">10 sessões · 383 vídeos</p>
+
+    <div class="flex gap-2 mb-6">
+      <UButton to="/search" icon="i-lucide-search" variant="soft">Pesquisar</UButton>
+      <UButton to="/bonus" icon="i-lucide-music" variant="soft">Material Bônus</UButton>
+    </div>
+
+    <div v-if="progressStore.recentlyWatched.length > 0" class="mb-8">
+      <h2 class="text-lg font-semibold mb-3">Continuar assistindo</h2>
+      <div class="flex gap-3 overflow-x-auto pb-2">
+        <UButton
+          v-for="p in progressStore.recentlyWatched"
+          :key="p.itemId"
+          :to="`/watch/${p.itemId}`"
+          variant="soft"
+          class="shrink-0"
+        >
+          {{ p.itemId }}
+        </UButton>
+      </div>
+    </div>
 
     <div class="grid gap-4 sm:grid-cols-2">
       <NuxtLink

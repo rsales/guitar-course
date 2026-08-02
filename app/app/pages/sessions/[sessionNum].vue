@@ -9,6 +9,8 @@ const { data: session } = await useFetch<Session>(`/api/sessions/${sessionNum}`)
 if (!session.value) {
   throw createError({ statusCode: 404, statusMessage: 'Sessão não encontrada' })
 }
+
+const progressStore = useProgressStore()
 </script>
 
 <template>
@@ -46,17 +48,27 @@ if (!session.value) {
 						class="hover:ring-2 hover:ring-primary transition-shadow cursor-pointer"
 						@click="navigateTo(`/watch/${item.itemId}`)"
 					>
-            <div class="flex items-center gap-3">
-              <UBadge
-                :color="item.vidType === 'exercise' ? 'warning' : 'neutral'"
-                variant="subtle"
-                size="sm"
-              >
-                {{ item.vidType === 'exercise' ? `Ex ${item.exerciseNum}` : 'Skill' }}
-              </UBadge>
-              <span class="text-sm">{{ item.title }}</span>
-            </div>
-          </UCard>
+						<div class="flex items-center gap-3">
+							<UBadge
+								:color="item.vidType === 'exercise' ? 'warning' : 'neutral'"
+								variant="subtle"
+								size="sm"
+							>
+								{{ item.vidType === 'exercise' ? `Ex ${item.exerciseNum}` : 'Skill' }}
+							</UBadge>
+							<span class="text-sm flex-1">{{ item.title }}</span>
+							<UIcon
+								v-if="progressStore.videoProgress[item.itemId]?.watched"
+								name="i-lucide-check-circle"
+								class="text-success shrink-0"
+							/>
+							<UIcon
+								v-if="progressStore.isFavorite(item.itemId)"
+								name="i-lucide-heart"
+								class="text-error shrink-0"
+							/>
+						</div>
+					</UCard>
         </div>
       </div>
     </div>
