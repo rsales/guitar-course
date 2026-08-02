@@ -22,14 +22,12 @@ function onTimeUpdate(e: Event) {
 
 <template>
   <div class="max-w-3xl mx-auto p-8">
-    <UButton
-      :to="`/sessions/${video?.sessionNum}`"
-      icon="i-lucide-arrow-left"
-      variant="ghost"
-      class="mb-4"
-    >
-      Sessão {{ video?.sessionNum }} — {{ video?.sessionTitle }}
-    </UButton>
+		<ULink 
+			:to="`/sessions/${video?.sessionNum}`"
+		>
+			<UIcon name="i-lucide-arrow-left" />
+			Sessão {{ video?.sessionNum }} — {{ video?.sessionTitle }}
+		</ULink>
 
     <div class="flex items-center gap-2 mb-2">
       <UBadge
