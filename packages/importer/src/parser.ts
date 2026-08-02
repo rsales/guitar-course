@@ -7,7 +7,7 @@ import type {
   VidItem,
   BonusItem,
   HomepageItem,
-} from './types.js'
+} from '@guitar-course/shared'
 
 const parserOptions = {
   ignoreAttributes: false,

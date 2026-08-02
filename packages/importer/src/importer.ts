@@ -2,7 +2,7 @@ import { writeFileSync, mkdirSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { parseDiscData } from './parser.js'
-import type { CourseManifest, SearchEntry } from './types.js'
+import type { CourseManifest, SearchEntry } from '@guitar-course/shared'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = resolve(__dirname, '../../..') // src -> importer -> packages -> raiz do monorepo
