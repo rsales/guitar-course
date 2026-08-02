@@ -15,14 +15,12 @@ const progressStore = useProgressStore()
 
 <template>
   <div class="max-w-4xl mx-auto p-8">
-    <UButton
-      to="/"
-      icon="i-lucide-arrow-left"
-      variant="ghost"
-      class="mb-4"
-    >
-      Todas as sessões
-    </UButton>
+		<ULink 
+			to="/"
+		>
+			<UIcon name="i-lucide-arrow-left" />
+			Todas as sessões
+		</ULink>
 
     <h1 class="text-3xl font-bold mb-1">
       Sessão {{ session?.sessionNum }} — {{ session?.title }}

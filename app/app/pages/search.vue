@@ -33,6 +33,13 @@ function goTo(entry: SearchEntry) {
 
 <template>
   <div class="max-w-2xl mx-auto p-8">
+		<ULink 
+			to="/"
+		>
+			<UIcon name="i-lucide-arrow-left" />
+			Todas as sessões
+		</ULink>
+
     <h1 class="text-2xl font-bold mb-4">Pesquisar</h1>
 
     <UInput
