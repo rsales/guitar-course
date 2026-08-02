@@ -39,7 +39,13 @@ if (!session.value) {
         </p>
 
         <div class="grid gap-2 sm:grid-cols-2">
-          <UCard v-for="item in section.items" :key="item.itemId" :ui="{ body: 'p-3' }">
+					<UCard
+						v-for="item in section.items"
+						:key="item.itemId"
+						:ui="{ body: 'p-3' }"
+						class="hover:ring-2 hover:ring-primary transition-shadow cursor-pointer"
+						@click="navigateTo(`/watch/${item.itemId}`)"
+					>
             <div class="flex items-center gap-3">
               <UBadge
                 :color="item.vidType === 'exercise' ? 'warning' : 'neutral'"
