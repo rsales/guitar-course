@@ -30,6 +30,7 @@
     "@tiptap/starter-kit": "^3.29.2",
     "@tiptap/suggestion": "^3.29.2",
     "@tiptap/vue-3": "^3.29.2",
+    "gsap": "^3.15.0",
     "nuxt": "^4.5.1",
     "pinia": "^4.0.2",
     "tailwindcss": "^4.3.3",
