@@ -16,7 +16,7 @@ let ch = 0
 let radius = 0
 
 const LOOP_DURATION_MS = 3000
-const VARIANTS = 21 // flair-2.webp até flair-22.webp
+const VARIANTS = 10 // flair-2.webp até flair-22.webp
 
 // idêntico ao draw() do pen original, mas com drawImage em vez de fillText
 function draw() {
@@ -50,7 +50,7 @@ onMounted(async () => {
 
   particles = Array.from({ length: COUNT }, (_, i) => {
     const img = new Image()
-    img.src = `/images/flair/flair-${2 + (i % VARIANTS)}.webp`
+    img.src = `/images/intro/guitar-${2 + (i % VARIANTS)}.png`
     return { x: 0, y: 0, scale: 0, rotate: 0, img }
   })
 
@@ -66,7 +66,7 @@ onMounted(async () => {
           const angle = (i / particles.length) * Math.PI * 2 - Math.PI / 2
           return Math.sin(angle * 10) * radius
         },
-        scale: 1.1,
+        scale: 0.56,
         rotate: 0,
       },
       {
