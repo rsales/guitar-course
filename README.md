@@ -59,7 +59,7 @@ npm run dev
 | 2 | Processamento de mídia (FLV → MP4, thumbnails) | ✅ |
 | 3 | Motor de dados (`@guitar-course/shared`) | ✅ |
 | 4 | Interface (Home, Sessões, Player, Pesquisa, Bônus) | ✅ |
-| 5 | UX (favoritos, progresso, notas) | ⏳ |
+| 5 | UX (favoritos, progresso, notas, continuação automática) | ✅ |
 | 6 | Busca inteligente | ⏳ |
 | 7 | Livro + vídeos | ⏳ |
 | 8 | Progressive Web App | ⏳ |
