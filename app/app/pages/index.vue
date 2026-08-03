@@ -15,6 +15,9 @@ function sessionProgress(session: Session) {
   <div class="max-w-4xl mx-auto p-8">
     <h1 class="text-3xl font-bold mb-2">Como Tocar Guitarra Passo a Passo</h1>
     <p class="text-(--ui-text-muted) mb-4">10 sessões · 383 vídeos</p>
+		<p v-if="progressStore.totalWatchedSeconds > 0" class="text-sm text-(--ui-text-muted) mb-4">
+			{{ Math.round(progressStore.totalWatchedSeconds / 60) }} minutos assistidos no total
+		</p>
 
     <div class="flex gap-2 mb-6">
       <UButton to="/search" icon="i-lucide-search" variant="soft">Pesquisar</UButton>

@@ -38,6 +38,9 @@ export const useProgressStore = defineStore('progress', {
         .slice(0, 5),
 
     noteFor: (state) => (itemId: string) => state.notes[itemId]?.text ?? '',
+
+		totalWatchedSeconds: (state) =>
+			Object.values(state.videoProgress).reduce((acc, p) => acc + p.lastPositionSeconds, 0),
   },
 
   actions: {

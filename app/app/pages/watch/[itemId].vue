@@ -11,11 +11,22 @@ if (!video.value) {
 }
 
 const progressStore = useProgressStore()
+const videoEl = ref<HTMLVideoElement | null>(null)
 
 function onTimeUpdate(e: Event) {
   const el = e.target as HTMLVideoElement
   if (el.duration > 0) {
     progressStore.updateProgress(itemId, el.currentTime, el.duration)
+  }
+}
+
+function onLoadedMetadata() {
+  const saved = progressStore.videoProgress[itemId]
+  if (saved && videoEl.value && saved.lastPositionSeconds > 5) {
+    const ratio = saved.lastPositionSeconds / videoEl.value.duration
+    if (ratio < 0.95) {
+      videoEl.value.currentTime = saved.lastPositionSeconds
+    }
   }
 }
 </script>
@@ -42,7 +53,7 @@ function onTimeUpdate(e: Event) {
     <div class="flex items-center justify-between mb-4">
       <h1 class="text-2xl font-bold">{{ video?.title }}</h1>
       <UButton
-        :icon="progressStore.isFavorite(itemId) ? 'i-lucide-heart' : 'i-lucide-heart'"
+        icon="i-lucide-heart"
         :color="progressStore.isFavorite(itemId) ? 'error' : 'neutral'"
         :variant="progressStore.isFavorite(itemId) ? 'solid' : 'outline'"
         square
@@ -52,12 +63,14 @@ function onTimeUpdate(e: Event) {
 
     <video
       v-if="video"
+      ref="videoEl"
       :key="video.itemId"
       :src="`/videos/${video.mp4File}`"
       :poster="`/thumbnails/${video.mp4File.replace('.mp4', '.jpg')}`"
       controls
       class="w-full rounded-lg bg-black aspect-video"
       @timeupdate="onTimeUpdate"
+      @loadedmetadata="onLoadedMetadata"
     />
 
     <div class="mt-6">
