@@ -1,10 +1,10 @@
 <script setup lang="ts">
-const showIntro = ref(true) // começa true — já cobre a tela desde o HTML inicial (SSR)
+const showIntro = ref(true)
 
 onMounted(() => {
   const seen = sessionStorage.getItem('guitar-course:intro-seen')
   if (seen) {
-    showIntro.value = false // já viu nesta sessão: esconde sem nem montar a animação
+    showIntro.value = false
   }
 })
 

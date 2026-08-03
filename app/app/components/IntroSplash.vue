@@ -16,9 +16,8 @@ let ch = 0
 let radius = 0
 
 const LOOP_DURATION_MS = 3000
-const VARIANTS = 10 // flair-2.webp até flair-22.webp
+const VARIANTS = 10
 
-// idêntico ao draw() do pen original, mas com drawImage em vez de fillText
 function draw() {
   if (!ctx) return
   particles.sort((a, b) => a.scale - b.scale)
